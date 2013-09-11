@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}Blog | YTBlog -- Learn from the best{% end %}
+
+{% block head %}
+<link href="/static/css/blog-carousel.css" rel="stylesheet"/>
+<style>
+  .article {
+
+  }
+  .article img {
+    width: 100%;
+  }
+  .article p {
+    font-size: 14px;
+  }
+  .article h1, .article h2 {
+    font-style: bold;
+  }
+  .article h2 {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #cccccc;
+  }
+  .article p, .article blockquote, .article ul, .article ol, .article dl, .article li, .article table, .article pre {
+    margin: 15px 0;
+  }
+</style>
+{% end %}
+
+{% block nav %}
+<li><a href="/">Home</a></li>
+<li class="active"><a href="/blog">Blog</a></li>
+<li><a href="#contact">Contact</a></li>
+{% end %}
+
+{% block content %}
+<div id="indexCarousel" class="carousel slide">
+  <div class="carousel-indicators">
+    <li data-target="#indexCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#indexCarousel" data-slide-to="1"></li>
+    <li data-target="#indexCarousel" data-slide-to="2"></li>
+  </div>
+  <div class="carousel-inner">
+
+    <div class="item active">
+      <div class="innerImg"><img src="/static/img/index-banner.jpg" alt=""/></div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Hey, I'm Y. T. <u>CHUNG</u>.</h1>
+          <p class="lead">Welcome to my blog!</p>
+          <a class="btn btn-lg btn-primary" href="/">About <b>ME</b></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="item">
+      <div class="innerImg"><img src="/static/img/index-banner2.jpg" alt=""/></div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Example headline.</h1>
+          <p class="lead">Hello world</p>
+          <a class="btn btn-large btn-primary" href="#">Jump to</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="item">
+      <div class="innerImg"><img src="/static/img/index-banner.jpg" alt=""/></div>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>Example headline.</h1>
+          <p class="lead">Hello world</p>
+          <a class="btn btn-large btn-primary" href="#">Jump to</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="left carousel-control" href="#indexCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+  <a class="right carousel-control" href="#indexCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div><!-- indexCarousel --!>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="article-container">
+        <div class="page-header">
+          <h3><i class="icon-calendar"></i> SEP 12, 2013</h3>
+          <h1><a>This Week in Fonts, Very Long Title Title Title Another line</a></h1>
+        </div>
+        <div>
+          <span class="glyphicon glyphicon-tags"></span>&nbsp; <a>Examples</a>, <a>Linux</a>, <a>CSS</a>
+          <p class="pull-right"><span class="badge">0</span> comments</p>
+        </div>
+        <div class="article">
+          <img src="/static/img/index-banner.jpg" class="img-thumbnail"/>
+          <p>A sultry script from Positype, a new level of trimming by Letters from Sweden, a confident sans from Rene Bieder, compact headlines by Typodermic, a layered family from S-Core, a new sans by Wiescher Design, a handwritten serif from La Goupil, and a classic didone by dooType.</p>
+          <h2>Positype: Lust Script</h2>
+          <p><em>Designed by Neil Summerour</em></p>
+          <p>Packed with alternates to play with... <em>enough to turn you on and satisfy.</em>这是一些中文字，试试中文字</p>
+        </div>
+        <div class="article-footer">
+          <p class="text-right">
+            <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
+            <a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
+            <a href="#"><span class="glyphicon glyphicon-comment"></span> Comment</a>
+          </p>
+        </div>
+      </div>
+
+      <hr/>
+      
+      <div class="article-container">
+        <div class="page-header">
+          <h3><i class="icon-calendar"></i> SEP 12, 2013</h3>
+          <h1><a>This Week in Fonts, Very Long Title Title Title Another line</a></h1>
+        </div>
+        <div>
+          <span class="glyphicon glyphicon-tags"></span>&nbsp; <a>Examples</a>, <a>Linux</a>, <a>CSS</a>
+          <p class="pull-right"><span class="badge">0</span> comments</p>
+        </div>
+        <div class="article">
+          <img src="/static/img/index-banner.jpg" class="img-thumbnail"/>
+          <p>A sultry script from Positype, a new level of trimming by Letters from Sweden, a confident sans from Rene Bieder, compact headlines by Typodermic, a layered family from S-Core, a new sans by Wiescher Design, a handwritten serif from La Goupil, and a classic didone by dooType.</p>
+          <h2>Positype: Lust Script</h2>
+          <p><em>Designed by Neil Summerour</em></p>
+          <p>Packed with alternates to play with... <em>enough to turn you on and satisfy.</em>这是一些中文字，试试中文字</p>
+        </div>
+        <div class="article-footer">
+          <p class="text-right">
+            <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
+            <a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
+            <a href="#"><span class="glyphicon glyphicon-comment"></span> Comment</a>
+          </p>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="article-container">
+        <div class="page-header">
+          <h3><i class="icon-calendar"></i> SEP 12, 2013</h3>
+          <h1><a>This Week in Fonts, Very Long Title Title Title Another line</a></h1>
+        </div>
+        <div>
+          <span class="glyphicon glyphicon-tags"></span>&nbsp; <a>Examples</a>, <a>Linux</a>, <a>CSS</a>
+          <p class="pull-right"><span class="badge">0</span> comments</p>
+        </div>
+        <div class="article">
+          <img src="/static/img/index-banner.jpg" class="img-thumbnail"/>
+          <p>A sultry script from Positype, a new level of trimming by Letters from Sweden, a confident sans from Rene Bieder, compact headlines by Typodermic, a layered family from S-Core, a new sans by Wiescher Design, a handwritten serif from La Goupil, and a classic didone by dooType.</p>
+          <h2>Positype: Lust Script</h2>
+          <p><em>Designed by Neil Summerour</em></p>
+          <p>Packed with alternates to play with... <em>enough to turn you on and satisfy.</em>这是一些中文字，试试中文字</p>
+        </div>
+        <div class="article-footer">
+          <p class="text-right">
+            <a href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
+            <a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
+            <a href="#"><span class="glyphicon glyphicon-comment"></span> Comment</a>
+          </p>
+        </div>
+      </div>
+
+      <hr/>
+      <button type="button" class="btn btn-lg btn-block btn-default">Load more</button>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Recently Topics</div>
+        <ul class="list-group">
+          <a class="list-group-item"><i class="icon-file-text"></i> Topic Title 1</a>
+          <a class="list-group-item"><i class="icon-file-text"></i> Topic Title 2</a>
+          <a class="list-group-item"><i class="icon-file-text"></i> Topic Title 3</a>
+          <a class="list-group-item"><i class="icon-file-text"></i> Topic Title 4</a>
+          <a class="list-group-item"><i class="icon-file-text"></i> Topic Title 5</a>
+        </ul>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Tags</div>
+        <div class="panel-body"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% end %}
