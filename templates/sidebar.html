@@ -1,0 +1,30 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Popular Articles</div>
+  <ul class="list-group">
+    {% for a in sidebar["popular_articles"] %}
+    <a class="list-group-item" href='/blog/article/{{ a["_id"] }}'><i class="icon-file-text"></i> {{ a["title"] }}<span class="badge pull-right">{{ a["comment_count"] }}</span></a>
+    {% end %}
+  </ul>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Recently Topics</div>
+  <ul class="list-group">
+    {% for a in sidebar["recently_articles"] %}
+    <a class="list-group-item" href='/blog/article/{{ a["_id"] }}'><i class="icon-file-text"></i> {{ a["title"] }}<span class="badge pull-right">{{ a["comment_count"] }}</span></a>
+    {% end %}
+  </ul>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Tags</div>
+  <ul class="list-group">
+    {% for tag in sidebar["tags"] %}
+    <a class="list-group-item" href='/blog/category/{{ tag["_id"] }}'><i class="icon-tag"></i> {{ tag["name"] }}<span class="badge pull-right">{{ len(tag["articles"]) }}</span></a>
+    {% end %}
+  </ul>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading"><i class="icon-weibo"></i> Sina Weibo</div>
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=5&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=1725113620&verifier=cb60d2fc&dpc=1"></iframe>
+</div>
+
+

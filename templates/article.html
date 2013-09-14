@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article["title"] }}{% end %}
+
+{% block head %}
+<link href="/static/css/article.css" rel="stylesheet"/>
+<style>
+  .article-comment-block .page-header {
+    margin-top: 10px;
+  }
+</style>
+
+<script>
+  $(document).ready(function() {
+    $(".alert").hide();
+    $("#reg_submit").click(function(e) {
+      $.ajax({
+        url: '/user/register',
+        type: "POST",
+        data: {
+          email: $("#reg_email").val(),
+          password: $("#reg_password").val(),
+          name: $("#reg_name").val(),
+        },
+        success: function(data) {
+          if (data.success) {
+            $("#reg_block").hide();
+          }
+          else {
+            $(".alert").html(data.msg);
+            $(".alert").show();
+          }
+        },
+        error: function(xhr, errmsg, except) {
+
+        }
+      });
+    });
+  });
+</script>
+{% end %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="page-hader">
+        <h1>{{ article["title"] }}</h1>
+      </div>
+
+      <div class="row article-meta">
+        <div class="col-md-4">
+          <h4><i class="icon-calendar"></i> {{ article["date"].strftime("%b %d") }}</h4>
+        </div>
+        <div class="col-md-8">
+          <h4 class="text-right">
+            {% for art_tag in article["categories"] %}
+            &nbsp;<a href="/blog/category/{{ art_tag['_id'] }}"><span class="label label-default">{{ art_tag["name"] }}</span></a>
+            {% end %}
+          </h4>
+        </div>
+      </div>
+
+      <div class="article-entry">
+        {% raw article["content"] %}
+      </div>
+
+      <div class="article-footer">
+        <p class="text-right">
+          {% if _user %}
+          <a href="/blog/edit/{{ article['_id'] }}"id="editButton"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
+          {% end %}
+          <!--<a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;-->
+          <a href="#"><span class="glyphicon glyphicon-comment"></span> Comment</a>
+        </p>
+      </div>
+
+      <ul class="pager">
+        <li class="previous"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span> Newer</a></li>
+        <li class="next"><a href="#">Older <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+      </ul>
+
+      <div class="article-comment-block">
+        <h2>{{ article["comment_count"] }} Comment{% if article["comment_count"] > 1 %}s{% end %}</h2>
+        <div class="article-comment">
+          {% if article["comments"] %}
+          <ul class="media-list">
+            {% for maincomment in article["comments"] %}
+            <hr/>
+            <li class="media">
+              <a class="pull-left"><img class="media-object img-rounded" src="{{ maincomment['user']['avatar_url'] }}"/></a>
+              <div class="media-body">
+                <h4 class="media-heading">{{ maincomment['user']["screen_name"] }} <small>{{ maincomment["date"].strftime("%b %d %I:%M%p") }}</small><button type="button" class="close pull-right" aria-hidden="true">&times;</button></h4>
+                <div class="article-comment-content">{% raw maincomment["content"] %}</div>
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-6">
+                    <div class="btn-group pull-right">
+                      <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-down"></span> <span class="badge">{{ maincomment["oppose_num"] }}</span></a>
+                      <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="badge">{{ maincomment["support_num"] }}</span></a>
+                      <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment"></span> Reply</a>
+                    </div>
+                  </div>
+                </div>
+
+                {% if len(maincomment["replys"]) %}
+                <ul>
+                  {% for reply in maincomment["replys"] %}
+                  <hr/>
+                  <li class="media">
+                    <a class="pull-left"><img class="media-object img-rounded" src="{{ reply['user']['avatar_url'] }}"/></a>
+                    <div class="media-body">
+                      <h4 class="media-heading">{{ reply['user']["screen_name"] }} <small>{{ reply["date"].strftime("%b %d %I:%M%p") }}</small><button type="button" class="close pull-right" aria=hidden="true">&times;</button></h4>
+                      <div class="article-comment-content">
+                        {% raw reply["content"] %}
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 col-md-offset-6">
+                          <div class="btn-group pull-right">
+                            <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-down"></span> <span class="badge">{{ reply["oppose_num"] }}</span></a>
+                            <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="badge">{{ reply["support_num"] }}</span></a>
+                            <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment"></span> Reply</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  {% end %}
+                </ul>
+                {% end %}
+              </div>
+            </li>
+            {% end %}
+          </ul>
+          {% end %}
+        </div>
+        <!-- register -->
+        <div class="well well-lg" id="reg_block">
+          <div class="page-header">
+            <h2>Register</h2>
+          </div>
+          <div class="alert alert-dismissable alert-danger fade in">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Oh snap!</strong> <p id="alert_text"></p>
+          </div>
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="col-md-2 control-label">Email</label>
+              <div class="col-md-10">
+                <input type="email" class="form-control" id="reg_email" placeholder="Email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Password</label>
+              <div class="col-md-10">
+                <input type="password" class="form-control" id="reg_password" placeholder="Password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Name</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" id="reg_name" placeholder="Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-10 col-md-offset-2">
+                <button type="button" class="btn btn-primary" id="reg_submit">Register</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      {% if _user %}
+      <div class="panel panel-default">
+        <a type="button" class="btn btn-primary btn-lg btn-block" id="newpost_button" href="/blog/edit">New post</a>
+      </div>
+      {% end %}
+      {% include "sidebar.html" %}
+    </div>
+  </div>
+
+</div>
+{% end %}

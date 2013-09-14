@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block title %}Edit{% end %}
+
+{% block head %}
+<script src="/static/epiceditor/js/epiceditor.min.js"/></script>
+<script>
+  var do_submit = function() {
+    $("#edit_submit").click(function(e) {
+      $(this).button('loading');
+      $(".alert").hide();
+      var btn = $(this);
+      $.ajax({
+        url: '',
+        type: 'POST',
+        data: {
+          'title': $("#edit_title").val(),
+          'categories': $("#edit_tags").val(),
+          'content': $("#edit_content").val()
+        },
+        success: function(data) {
+          if (data.success) {
+            location.href = "/blog/article/" + data.article_id;
+          }
+          else {
+            $("#alert_text").html(data.msg)
+            $(".alert").show();
+          }
+          btn.button('reset');
+        },
+        error: function(xhr, errmsg, except) {
+          $("#alert_text").html(errmsg)
+          btn.button('reset');
+        }
+      });
+    });
+  };
+  $(document).ready(function() {
+    var opts = {
+      container: 'editor',
+      textarea: 'edit_content',
+      useNativeFullscreen: true,
+      parser: marked,
+      focusOnLoad: true,
+      basePath: '/static/epiceditor',
+      clientSideStorage: false,
+      file: {
+        defaultContent: '',
+      },
+      button: {
+        preview: true,
+        fullscreen: true,
+        bar: "auto"
+      },
+      theme: {
+        base: '/themes/base/epiceditor.css',
+        preview: '/themes/preview/github.css',
+        editor: '/themes/editor/epic-light.css'
+      },
+      autogrow: true
+    }
+    var editor = new EpicEditor(opts).load();
+
+    $(".alert").hide();
+    do_submit();
+  });
+  </script>
+
+{% end %}
+
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1>Article Editor
+      <p class="pull-right">
+        <button type="button" class="btn btn-primary" id="edit_submit" data-loading-text="Submiting...">Save</button>
+        <a type="button" class="btn btn-default" href="{{ refurl }}">Close</a>
+      </p>
+    </h1>
+  </div>
+  <div class="alert alert-dismissable alert-danger fade in">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Oh snap!</strong> <p id="alert_text"></p>
+  </div>
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label class="col-md-1 control-label">Title</label>
+      <div class="col-md-11">
+        <input type="text" class="form-control" id="edit_title" placeholder="Title" value="{{ title }}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-1 control-label">Tags</label>
+      <div class="col-md-11">
+        <input type="text" class="form-control" id="edit_tags" placeholder="Tags" value="{{ categories }}">
+      </div>
+    </div>
+    <textarea id="edit_content" class="hide">{{ content }}</textarea>
+    <div class="form-group">
+      <label class="col-md-1 control-label">Content</label>
+      <div class="col-md-11">
+        <div id="editor"></div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-offset-1 col-md-11">
+        <button type="button" class="btn btn-primary" id="edit_submit" data-loading-text="Submiting...">Save</button>
+        <a type="button" class="btn btn-default" href="{{ refurl }}">Close</a>
+      </div>
+    </div>
+  </form>
+</div>
+{% end %}
+
+

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Category: {{ category["name"] }}{% end %}
+
+{% block content %}
+<div class="container">
+  <div class="page-header">
+    <h1><span class="glyphicon glyphicon-tag"></span> {{ category["name"] }}</h1>
+  </div>
+  {% set isFirst = True %}
+  {% for y in category["year"] %}
+  {% if isFirst %}
+    {% set isFirst = False %}
+  {% else %}
+  <hr/>
+  {% end %}
+  <div class="row">
+    <div class="col-md-2">
+      <h2>{{ y }}</h2>
+    </div>
+    {% set isFirst = True %}
+    <div class="col-md-10">
+      {% for a in category["articles"][y] %}
+      {% if isFirst %}
+        {% set isFirst = False %}
+      {% else %}
+        <hr/>
+      {% end %}
+      <div class="row">
+        <div class="col-md-7">
+          <a href='/blog/article/{{ a["_id"] }}'><h2>{{ a["title"] }}</h2></a>
+        </div>
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <h4 class="text-right"><i class="icon-calendar"></i>&nbsp;&nbsp;&nbsp;&nbsp; {{ a["date"].strftime("%b %d") }}</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-9">
+              <h4 class="text-right">
+                {% for art_cat in a["categories"] %}
+                <a href="/blog/category/{{ art_cat['_id'] }}"/><span class="label label-default">{{ art_cat['name'] }}</span></a>&nbsp;
+                {% end %}
+              </h4>
+            </div>
+            <div class="col-md-3"><h4 class="text-right"><i class="icon-comments"></i> <span class="badge">{{ a["comment_count"] }}</span></h4></div>
+          </div>
+        </div>
+      </div>
+      {% end %}
+    </div>
+  </div>
+  {% end %}
+</div>
+{% end %}
