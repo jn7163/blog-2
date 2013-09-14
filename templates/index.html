@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Home | YTBlog -- Learn from the best{% end %}
+{% block title %}Home{% end %}
 
 {% block head %}
 <style>
@@ -72,7 +72,14 @@
   .love p {
     font-size: 16px;
     line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 10px;
     //font-weight: 300;
+  }
+  
+  .love img {
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .love .love-icon {
@@ -96,12 +103,6 @@
   }
 </style>
 <link href="/static/css/social.css" rel="stylesheet"/>
-{% end %}
-
-{% block nav %}
-<li class="active"><a href="/">Home</a></li>
-<li><a href="/blog">Blog</a></li>
-<li><a href="#contact">Contact</a></li>
 {% end %}
 
 {% block content %}

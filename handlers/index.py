@@ -1,5 +1,5 @@
-from tornado.web import RequestHandler
+from basehandler import BaseHandler
 
-class IndexHandler(RequestHandler):
+class IndexHandler(BaseHandler):
     def get(self):
-        self.render("index.html")
+        self.render("index.html", nav_choose="home")
