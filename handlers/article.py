@@ -1,8 +1,8 @@
 from basehandler import BaseHandler
-import markdown
 import hashlib
 from bson.objectid import ObjectId
 from tornado.web import HTTPError
+from docutils.core import publish_parts
 
 class ArticleHandler(BaseHandler):
     def get(self, article_id):
@@ -14,8 +14,7 @@ class ArticleHandler(BaseHandler):
             '_id': query_result["_id"],
             'title': query_result["title"],
             'date': query_result["date"],
-            'content': markdown.markdown(query_result["content"], 
-                extensions=["codehilite(guess_lang=False)"]),
+            'content': publish_parts(query_result['content'], writer_name='html')['html_body'],
             'categories': self.db.category.find({"articles": article_id}),
             'comments': [],
             'comment_count': self.db.comment.find({"article": article_id}).count(),

@@ -1,7 +1,7 @@
 from basehandler import BaseHandler
-import markdown
 import pymongo
 import re
+from docutils.core import publish_parts
 
 class BlogHandler(BaseHandler):
     def get(self):
@@ -18,25 +18,24 @@ class BlogHandler(BaseHandler):
         for ar in query_result[current_page * 5:(current_page + 1) * 5]:
             article = {
                     '_id': ar["_id"],
-                    'title': ar["title"],
-                    'date': ar["date"],
-                    'content': markdown.markdown(ar["content"], 
-                        extensions=["codehilite(guess_lang=False)"]),
-                    'categories': self.db.category.find({"articles": ar['_id']}),
-                    'comment_count': self.db.comment.find({"article": ar['_id']}).count()
-                }
+                   'title': ar["title"],
+                   'date': ar["date"],
+                   'content': publish_parts(ar['content'], writer_name='html')['html_body'],
+                   'categories': self.db.category.find({"articles": ar['_id']}),
+                   'comment_count': self.db.comment.find({"article": ar['_id']}).count()
+               }
             articles.append(article)
 
         for ar in articles:
-            imgs = regx.findall(ar["content"])
-            if len(imgs) != 0:
-                carousels.append({
-                        '_id': ar["_id"],
-                        'title': ar["title"],
-                        'img': imgs[0],
-                        'categories': article["categories"],
-                        'date': article["date"],
-                    })
+           imgs = regx.findall(ar["content"])
+           if len(imgs) != 0:
+               carousels.append({
+                       '_id': ar["_id"],
+                       'title': ar["title"],
+                       'img': imgs[0],
+                       'categories': article["categories"],
+                       'date': article["date"],
+                   })
 
         self.render("blog.html", 
                 sidebar=self.get_sidebar_data(), articles=articles, carousels=carousels[:4],
