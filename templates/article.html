@@ -82,92 +82,21 @@
 
       <div class="article-comment-block">
         <h2>{{ article["comment_count"] }} Comment{% if article["comment_count"] > 1 %}s{% end %}</h2>
-        <div class="article-comment">
-          {% if article["comments"] %}
-          <ul class="media-list">
-            {% for maincomment in article["comments"] %}
-            <hr/>
-            <li class="media">
-              <a class="pull-left"><img class="media-object img-rounded" src="{{ maincomment['user']['avatar_url'] }}"/></a>
-              <div class="media-body">
-                <h4 class="media-heading">{{ maincomment['user']["screen_name"] }} <small>{{ maincomment["date"].strftime("%b %d %I:%M%p") }}</small><button type="button" class="close pull-right" aria-hidden="true">&times;</button></h4>
-                <div class="article-comment-content">{% raw maincomment["content"] %}</div>
-                <div class="row">
-                  <div class="col-md-6 col-md-offset-6">
-                    <div class="btn-group pull-right">
-                      <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-down"></span> <span class="badge">{{ maincomment["oppose_num"] }}</span></a>
-                      <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="badge">{{ maincomment["support_num"] }}</span></a>
-                      <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment"></span> Reply</a>
-                    </div>
-                  </div>
-                </div>
 
-                {% if len(maincomment["replys"]) %}
-                <ul>
-                  {% for reply in maincomment["replys"] %}
-                  <hr/>
-                  <li class="media">
-                    <a class="pull-left"><img class="media-object img-rounded" src="{{ reply['user']['avatar_url'] }}"/></a>
-                    <div class="media-body">
-                      <h4 class="media-heading">{{ reply['user']["screen_name"] }} <small>{{ reply["date"].strftime("%b %d %I:%M%p") }}</small><button type="button" class="close pull-right" aria=hidden="true">&times;</button></h4>
-                      <div class="article-comment-content">
-                        {% raw reply["content"] %}
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6 col-md-offset-6">
-                          <div class="btn-group pull-right">
-                            <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-down"></span> <span class="badge">{{ reply["oppose_num"] }}</span></a>
-                            <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="badge">{{ reply["support_num"] }}</span></a>
-                            <a type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment"></span> Reply</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                  {% end %}
-                </ul>
-                {% end %}
-              </div>
-            </li>
-            {% end %}
-          </ul>
-          {% end %}
-        </div>
-        <!-- register -->
-        <div class="well well-lg" id="reg_block">
-          <div class="page-header">
-            <h2>Register</h2>
-          </div>
-          <div class="alert alert-dismissable alert-danger fade in">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>Oh snap!</strong> <p id="alert_text"></p>
-          </div>
-          <form class="form-horizontal" role="form">
-            <div class="form-group">
-              <label class="col-md-2 control-label">Email</label>
-              <div class="col-md-10">
-                <input type="email" class="form-control" id="reg_email" placeholder="Email">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2 control-label">Password</label>
-              <div class="col-md-10">
-                <input type="password" class="form-control" id="reg_password" placeholder="Password">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2 control-label">Name</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" id="reg_name" placeholder="Name">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-md-10 col-md-offset-2">
-                <button type="button" class="btn btn-primary" id="reg_submit">Register</button>
-              </div>
-            </div>
-          </form>
-        </div>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+          var disqus_shortname = 'zonyitooblog'; // required: replace example with your forum shortname
+
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
     <div class="col-md-4">
