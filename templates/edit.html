@@ -14,6 +14,14 @@
   .CodeMirror-fullscreen {
     padding-top: 70px;
   }
+  .CodeMirror {
+    border: 1px solid #eee;
+    height: auto;
+  }
+  .CodeMirror-scroll {
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
 </style>
 {% end %}
 
@@ -51,28 +59,12 @@
         <textarea id="edit_content">{{ content }}</textarea>
       </div>
     </div>
-    <div class="form-group">
-      <div class="col-md-offset-1 col-md-11">
-        <button type="button" class="btn btn-primary" id="edit_submit" data-loading-text="Submiting...">Save</button>
-        <a type="button" class="btn btn-default" href="{{ refurl }}">Close</a>
-      </div>
-    </div>
   </form>
 </div>
 
 <script>
   var textarea_edit = document.getElementById("edit_content");
-  /*
-  var editor = CodeMirror(function(elt) {
-    textarea_edit.parentNode.replaceChild(elt, textarea_edit);
-  }, {
-    value: textarea_edit.value,
-    mode: 'rst-base',
-    theme: 'cm-s-monokai',
-    lineWrapping: true,
-    lineNumbers: true
-  });
-   */
+  
   var editor = CodeMirror.fromTextArea(textarea_edit, {
     theme: 'cm-s-elegant',
     lineWrapping: true,
