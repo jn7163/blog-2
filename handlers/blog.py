@@ -23,7 +23,6 @@ class BlogHandler(BaseHandler):
                        'date': ar["date"],
                        'content': publish_parts(ar['content'], writer_name='html')['html_body'],
                        'categories': self.db.category.find({"articles": ar['_id']}),
-                       'comment_count': self.db.comment.find({"article": ar['_id']}).count()
                    }
                 articles.append(article)
 

@@ -10,34 +10,6 @@
   }
 </style>
 
-<script>
-  $(document).ready(function() {
-    $(".alert").hide();
-    $("#reg_submit").click(function(e) {
-      $.ajax({
-        url: '/user/register',
-        type: "POST",
-        data: {
-          email: $("#reg_email").val(),
-          password: $("#reg_password").val(),
-          name: $("#reg_name").val(),
-        },
-        success: function(data) {
-          if (data.success) {
-            $("#reg_block").hide();
-          }
-          else {
-            $(".alert").html(data.msg);
-            $(".alert").show();
-          }
-        },
-        error: function(xhr, errmsg, except) {
-
-        }
-      });
-    });
-  });
-</script>
 {% end %}
 
 {% block content %}
@@ -81,8 +53,6 @@
       </ul>
 
       <div class="article-comment-block">
-        <h2>{{ article["comment_count"] }} Comment{% if article["comment_count"] > 1 %}s{% end %}</h2>
-
         <div id="disqus_thread"></div>
         <script type="text/javascript">
           /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

@@ -3,7 +3,9 @@
 {% block title %}Edit{% end %}
 
 {% block head %}
-<script src="/static/epiceditor/js/epiceditor.min.js"/></script>
+<link href="stylesheet" href="/static/codemirror/lib/codemirror.css"></script>
+<script src="/static/codemirror/lib/codemirror.js"></script>
+<script src="/static/codemirror/mode/rst/rst.js"></script>
 <script>
   var do_submit = function() {
     $("#edit_submit").click(function(e) {
@@ -35,35 +37,7 @@
       });
     });
   };
-  $(document).ready(function() {
-    var opts = {
-      container: 'editor',
-      textarea: 'edit_content',
-      useNativeFullscreen: true,
-      parser: marked,
-      focusOnLoad: true,
-      basePath: '/static/epiceditor',
-      clientSideStorage: false,
-      file: {
-        defaultContent: '',
-      },
-      button: {
-        preview: true,
-        fullscreen: true,
-        bar: "auto"
-      },
-      theme: {
-        base: '/themes/base/epiceditor.css',
-        preview: '/themes/preview/github.css',
-        editor: '/themes/editor/epic-light.css'
-      },
-      autogrow: true
-    }
-    var editor = new EpicEditor(opts).load();
-
-    $(".alert").hide();
-    do_submit();
-  });
+  
   </script>
 
 {% end %}
@@ -111,6 +85,12 @@
     </div>
   </form>
 </div>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("edit_content"), {
+    lineNumbers: true,
+  });
+</script>
 {% end %}
 
 
