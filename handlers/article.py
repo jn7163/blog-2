@@ -1,8 +1,8 @@
 from basehandler import BaseHandler
-import hashlib
 from bson.objectid import ObjectId
 from tornado.web import HTTPError
 from docutils.core import publish_parts
+from rst_htmlwriter import Writer
 
 class ArticleHandler(BaseHandler):
     def get(self, article_id):
@@ -14,7 +14,7 @@ class ArticleHandler(BaseHandler):
             '_id': query_result["_id"],
             'title': query_result["title"],
             'date': query_result["date"],
-            'content': publish_parts(query_result['content'], writer_name='html')['html_body'],
+            'content': publish_parts(query_result['content'], writer=Writer())['html_body'],
             'categories': self.db.category.find({"articles": article_id}),
         }
         

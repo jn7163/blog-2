@@ -2,6 +2,7 @@ from basehandler import BaseHandler
 import pymongo
 import re
 from docutils.core import publish_parts
+from rst_htmlwriter import Writer
 
 class BlogHandler(BaseHandler):
     def get(self):
@@ -21,7 +22,7 @@ class BlogHandler(BaseHandler):
                         '_id': ar["_id"],
                        'title': ar["title"],
                        'date': ar["date"],
-                       'content': publish_parts(ar['content'], writer_name='html')['html_body'],
+                       'content': publish_parts(ar['content'], writer=Writer())['html_body'],
                        'categories': self.db.category.find({"articles": ar['_id']}),
                    }
                 articles.append(article)

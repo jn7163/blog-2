@@ -45,7 +45,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if _user %}
-            <li {% if nav_choose == "login" %}class="active"{% end %}><a href="/user/logoff"><i class="icon-user"></i> {{ _user["screen_name"] }}</a></li>
+            <li {% if nav_choose == "login" %}class="active"{% end %}><a href="/user/logoff"><i class="icon-user"></i> {{ _user["screen_name"] }} Logoff</a></li>
             {% else %}
             <li {% if nav_choose == "login" %}class="active"{% end %}><a href="/user/login"><i class="icon-user"></i> Login</a></li>
             {% end %}
