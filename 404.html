@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -22,9 +23,6 @@
       }
       
     </style>
-
-    {% block head %}
-    {% end %}
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -55,19 +53,12 @@
       </div>
     </div>
 
-    {% block content %}
-    {% end %}
-
-    <footer>
-      <div class="container">
-        <hr>
-        <p class="pull-right"><i class="icon-arrow-up"></i> <a href="#">Back to top</a></p>
-        <p>&copy; 2013 Y. T. Chung &middot; Powered by <a href="http://getbootstrap.com/" target="_blank">Bootstrap</a>, <a href="http://www.tornadoweb.org/" target="_blank">Tornado</a></p>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Oh! Snap!!</h1>
+        <p>404!! This page doesn't exist!!</p>
+        <p><a class="btn btn-primary btn-lg" href="/">Back to Home</a></p>
       </div>
-    </footer>
-
-    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    </div>
   </body>
 </html>
-
-
