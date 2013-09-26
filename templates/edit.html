@@ -7,40 +7,6 @@
 <link rel="stylesheet" href="/static/codemirror/theme/monokai.css"/>
 <script src="/static/codemirror/lib/codemirror.js"></script>
 <script src="/static/codemirror/mode/rst/rst.js"></script>
-<script>
-  var do_submit = function() {
-    $("#edit_submit").click(function(e) {
-      $(this).button('loading');
-      $(".alert").hide();
-      var btn = $(this);
-      $.ajax({
-        url: '',
-        type: 'POST',
-        data: {
-          'title': $("#edit_title").val(),
-          'categories': $("#edit_tags").val(),
-          'content': $("#edit_content").val()
-        },
-        success: function(data) {
-          if (data.success) {
-            location.href = "/blog/article/" + data.article_id;
-          }
-          else {
-            $("#alert_text").html(data.msg)
-            $(".alert").show();
-          }
-          btn.button('reset');
-        },
-        error: function(xhr, errmsg, except) {
-          $("#alert_text").html(errmsg)
-          btn.button('reset');
-        }
-      });
-    });
-  };
-  
-  </script>
-
 {% end %}
 
 
@@ -54,7 +20,7 @@
       </p>
     </h1>
   </div>
-  <div class="alert alert-dismissable alert-danger fade in">
+  <div class="alert alert-dismissable alert-danger fade in" style="display: none;">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
     <strong>Oh snap!</strong> <p id="alert_text"></p>
   </div>
@@ -96,6 +62,39 @@
     theme: 'cm-s-monokai',
     lineWrapping: true,
     lineNumbers: true
+  });
+  var do_submit = function() {
+    $("#edit_submit").click(function(e) {
+      $(this).button('loading');
+      $(".alert").hide();
+      var btn = $(this);
+      $.ajax({
+        url: '',
+        type: 'POST',
+        data: {
+          'title': $("#edit_title").val(),
+          'categories': $("#edit_tags").val(),
+          'content': $("#edit_content").val()
+        },
+        success: function(data) {
+          if (data.success) {
+            location.href = "/blog/article/" + data.article_id;
+          }
+          else {
+            $("#alert_text").html(data.msg)
+            $(".alert").show();
+          }
+          btn.button('reset');
+        },
+        error: function(xhr, errmsg, except) {
+          $("#alert_text").html(errmsg)
+          btn.button('reset');
+        }
+      });
+    });
+  };
+  $(document).ready(function() {
+    do_submit();
   });
 </script>
 {% end %}
