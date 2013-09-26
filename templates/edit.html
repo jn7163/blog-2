@@ -66,10 +66,12 @@
   });
    */
   var editor = CodeMirror.fromTextArea(textarea_edit, {
-    mode: 'rst',
+    mode: {
+      name: 'rst'
+    },
     theme: 'cm-s-monokai',
     lineWrapping: true,
-    lineNumbers: true
+    lineNumbers: true,
   });
   var do_submit = function() {
     $("#edit_submit").click(function(e) {
