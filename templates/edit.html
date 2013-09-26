@@ -54,6 +54,7 @@
 
 <script>
   var textarea_edit = document.getElementById("edit_content");
+  /*
   var editor = CodeMirror(function(elt) {
     textarea_edit.parentNode.replaceChild(elt, textarea_edit);
   }, {
@@ -62,6 +63,10 @@
     theme: 'cm-s-monokai',
     lineWrapping: true,
     lineNumbers: true
+  });
+   */
+  var editor = CodeMirror.fromTextArea(textarea_edit, {
+
   });
   var do_submit = function() {
     $("#edit_submit").click(function(e) {
