@@ -74,6 +74,7 @@
     $("#edit_submit").click(function(e) {
       $(this).button('loading');
       $(".alert").hide();
+      editor.save();
       var btn = $(this);
       $.ajax({
         url: '',
