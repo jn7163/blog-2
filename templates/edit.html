@@ -8,8 +8,8 @@
 <script src="/static/codemirror/lib/codemirror.js"></script>
 <script src="/static/codemirror/mode/rst/rst.js"></script>
 <script src="/static/codemirror/addon/selection/active-line.js"></script>
-<script src="/static/codemirror/addon/display/fullscreen.js"></script>
-<link rel="stylesheet" href="/static/codemirror/addon/display/fullscreen.css"/>
+<script src="/static/codemirror/addon/display/fullScreen.js"></script>
+<link rel="stylesheet" href="/static/codemirror/addon/display/fullScreen.css"/>
 {% end %}
 
 
@@ -74,10 +74,10 @@
     lineNumbers: true,
     extraKeys: {
       "F11": function(cm) {
-        cm.setOption("fullscreen", !cm.getOption("fullscreen"));
+        cm.setOption("fullScreen", !cm.getOption("fullScreen"));
       },
       "Esc": function(cm) {
-        if (cm.getOption("fullscreen")) cm.setOption("fullscreen", false);
+        if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
       }
     }
   });
