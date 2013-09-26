@@ -72,6 +72,14 @@
     theme: 'cm-s-elegant',
     lineWrapping: true,
     lineNumbers: true,
+    extraKeys: {
+      "F11": function(cm) {
+        cm.setOption("fullscreen", !cm.getOption("fullscreen"));
+      },
+      "Esc": function(cm) {
+        if (cm.getOption("fullscreen")) cm.setOption("fullscreen", false);
+      }
+    }
   });
   var do_submit = function() {
     $("#edit_submit").click(function(e) {
