@@ -8,7 +8,7 @@ from docutils.writers import html4css1
 
 class Writer(html4css1.Writer):
     def __init__(self):
-        super(Writer, self).__init__(self)
+        html4css1.writers.Writer.__init__(self)
         self.translator_class = HTMLTranslator
 
 class HTMLTranslator(html4css1.HTMLTranslator):
