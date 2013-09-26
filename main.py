@@ -9,11 +9,7 @@ from handlers.logoff import LogoffHandler
 from handlers.article import ArticleHandler
 from handlers.category import CategoryHandler
 from handlers.edit import EditHandler
-from handlers.register import RegisterHandler
-
-from handlers.ajax.getarticle import AjaxGetArticleHandler
-from handlers.ajax.addarticle import AjaxAddArticleHandler
-from handlers.ajax.updatearticle import AjaxUpdateArticleHandler
+from handlers.upload import UploadHandler
 
 import os, pymongo
 
@@ -33,16 +29,11 @@ if __name__ == "__main__":
             (r"/blog/article/(?P<article_id>.*)", ArticleHandler),
             (r"/blog/edit/?(?P<article_id>.*)", EditHandler),
             (r"/blog/category/(?P<tag_id>.*)", CategoryHandler),
+            (r"/blog/upload", UploadHandler),
             (r"/user/login", LoginHandler),
             (r"/user/logoff", LogoffHandler),
-            (r"/user/register", RegisterHandler),
             (r"/media/(.*)", StaticFileHandler, {"path": "media"}),
 
-            ## AJAX
-            (r"/blog/ajax/article/add", AjaxAddArticleHandler),
-            (r"/blog/ajax/article/get/(?P<article_id>.*)", AjaxGetArticleHandler),
-            (r"/blog/ajax/article/update/(?P<article_id>.*)", AjaxUpdateArticleHandler),
-            
         ], **settings)
     application.listen(9030)
 

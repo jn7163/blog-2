@@ -34,8 +34,8 @@ class BlogHandler(BaseHandler):
                            '_id': ar["_id"],
                            'title': ar["title"],
                            'img': imgs[0],
-                           'categories': article["categories"],
-                           'date': article["date"],
+                           'categories': ar["categories"],
+                           'date': ar["date"],
                        })
 
         self.render("blog.html", 

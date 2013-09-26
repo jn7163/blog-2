@@ -103,6 +103,7 @@
   </form>
 </div>
 
+<script src="/static/js/codemirror.inline-attach.min.js"></script>
 <script>
   var textarea_edit = document.getElementById("edit_content");
   
@@ -118,6 +119,31 @@
         if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
       }
     }
+  });
+  inlineAttach.attachToCodeMirror(editor, {
+    uploadUrl: '/blog/upload',
+    uploadFieldName: 'img',
+    downloadFieldName: 'img',
+    allowedTypes: [
+      'image/jpeg',
+      'image/png',
+      'image/jpg',
+      'image/png'
+    ],
+    progressText: '.. image:: Uploading file..',
+    urlText: '.. image:: {filename}',
+    /*
+    onReceivedFile: function(file) {
+
+    },
+    onUploadedFile: function(json) {
+
+    },
+    customErrorHandler: function() {
+      return true;
+    },
+    */
+    errorText: "Error uploading file"
   });
   var do_submit = function() {
     $("#edit_submit").click(function(e) {
