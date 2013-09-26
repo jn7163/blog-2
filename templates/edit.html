@@ -86,7 +86,7 @@
 </div>
 
 <script>
-  var textarea_edit = document.getElementsById("edit_content");
+  var textarea_edit = document.getElementById("edit_content");
   var editor = CodeMirror(function(elt) {
     textarea_edit.parentNode.replaceChild(elt, textarea_edit);
   }, {
