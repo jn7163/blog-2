@@ -44,6 +44,6 @@ if __name__ == "__main__":
             (r"/blog/ajax/article/update/(?P<article_id>.*)", AjaxUpdateArticleHandler),
             
         ], **settings)
-    application.listen(8888)
+    application.listen(9030)
 
     IOLoop.instance().start()
