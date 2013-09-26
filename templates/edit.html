@@ -4,6 +4,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="/static/codemirror/lib/codemirror.css"/>
+<link rel="stylesheet" href="/static/codemirror/theme/monokai.css"/>
 <script src="/static/codemirror/lib/codemirror.js"></script>
 <script src="/static/codemirror/mode/rst/rst.js"></script>
 <script>
@@ -91,6 +92,10 @@
     textarea_edit.parentNode.replaceChild(elt, textarea_edit);
   }, {
     value: textarea_edit.value,
+    mode: 'rst-base',
+    theme: 'cm-s-monokai',
+    lineWrapping: true,
+    lineNumbers: true
   });
 </script>
 {% end %}
