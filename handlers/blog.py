@@ -18,7 +18,7 @@ class BlogHandler(BaseHandler):
                        'title': ar["title"],
                        'date': ar["date"],
                        'content': publish_parts(ar['content'], writer=Writer())['html_body'],
-                       'categories': self.db.category.find({"articles": ar['_id']}),
+                       'categories': list(self.db.category.find({"articles": ar['_id']})),
                    }
                 articles.append(article)
 

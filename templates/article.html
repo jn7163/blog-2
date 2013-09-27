@@ -38,19 +38,22 @@
       </div>
 
       <div class="article-footer">
-        <p class="text-right">
+        <p style="margin-top: 20px; margin-bottom: 20px;">
           {% if _user %}
-          <a href="/blog/edit/{{ article['_id'] }}"id="editButton"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
+          <a href="/blog/edit/{{ article['_id'] }}" id="editButton" class="pull-right"><span class="glyphicon glyphicon-edit"></span> Edit</a>
           {% end %}
+          &copy; by <b>Y. T. CHUNG</b>
           <!--<a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;-->
           <!--<a href="#disqus_thread"><span class="glyphicon glyphicon-comment"></span> Comment</a>-->
         </p>
       </div>
 
+      <!--
       <ul class="pager">
         <li class="previous"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span> Newer</a></li>
         <li class="next"><a href="#">Older <span class="glyphicon glyphicon-chevron-right"></span></a></li>
       </ul>
+      -->
 
       <div class="article-comment-block">
         <div id="disqus_thread"></div>

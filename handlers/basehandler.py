@@ -10,14 +10,8 @@ class BaseHandler(RequestHandler):
     def get_sidebar_data(self):
         sidebar = {
             'tags': self.db.category.find(),
-            'popular_articles': list(self.db.article.find()),
             'recently_articles': list(self.db.article.find().sort("date", pymongo.DESCENDING)[:5]),
         }
-        for pop_art in sidebar['popular_articles']:
-            pop_art['comment_count'] = self.db.comment.find({"article": pop_art["_id"]}).count()
-
-        sidebar['popular_articles'].sort(cmp=lambda x,y: x['comment_count'] < y['comment_count'], reverse=True)
-        sidebar['popular_articles'] = sidebar['popular_articles'][:5]
 
         for rec_art in sidebar['recently_articles']:
             rec_art['comment_count'] = self.db.comment.find({"article": rec_art["_id"]}).count()

@@ -60,7 +60,7 @@
           <h1><a href="/blog/article/{{ ar['_id'] }}">{{ ar["title"] }}</a></h1>
           <p>
             {% for tag in ar["categories"] %}
-            <a href="/blog/category/{{tag['_id']}}"><span class="badge">{{ tag["name"] }}</span></a>&nbsp;
+            <a href="/blog/category/{{ tag['_id'] }}"><span class="badge">{{ tag["name"] }}</span></a>&nbsp;
             {% end %}
           </p>
         </div>
@@ -69,9 +69,9 @@
           {% raw ar["content"] %}
         </div>
         <div class="article-footer">
-          <p class="text-right">
+          <p style="margin-top: 20px; margin-bottom: 20px;">
             {% if _user %}
-            <a href="/blog/edit/{{ ar['_id'] }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
+            <a href="/blog/edit/{{ ar['_id'] }}" class="pull-right"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
             {% end %}
             <!--<a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
             <a href="/blog/article/{{ ar['_id'] }}"><span class="glyphicon glyphicon-comment"></span> Comment</a>-->
