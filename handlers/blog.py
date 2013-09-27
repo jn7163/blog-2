@@ -17,7 +17,11 @@ class BlogHandler(BaseHandler):
                         '_id': ar["_id"],
                        'title': ar["title"],
                        'date': ar["date"],
-                       'content': publish_parts(ar['content'], writer=Writer())['html_body'],
+                       'content': publish_parts(ar['content'], 
+                           writer=Writer(),
+                           settings_overrides={
+                                    'initial_header_level': 2,
+                               })['html_body'],
                        'categories': list(self.db.category.find({"articles": ar['_id']})),
                    }
                 articles.append(article)

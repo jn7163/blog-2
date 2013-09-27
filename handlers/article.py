@@ -14,7 +14,11 @@ class ArticleHandler(BaseHandler):
             '_id': query_result["_id"],
             'title': query_result["title"],
             'date': query_result["date"],
-            'content': publish_parts(query_result['content'], writer=Writer())['html_body'],
+            'content': publish_parts(query_result['content'], 
+                writer=Writer(),
+                settings_overrides={
+                        'initial_header_level': 2,
+                    })['html_body'],
             'categories': self.db.category.find({"articles": article_id}),
         }
         
