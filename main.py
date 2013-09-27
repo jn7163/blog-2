@@ -10,6 +10,7 @@ from handlers.article import ArticleHandler
 from handlers.category import CategoryHandler
 from handlers.edit import EditHandler
 from handlers.upload import UploadHandler
+from handlers.archive import ArchiveHandler
 
 import os, pymongo
 
@@ -30,6 +31,7 @@ if __name__ == "__main__":
             (r"/blog/edit/?(?P<article_id>.*)", EditHandler),
             (r"/blog/category/(?P<tag_id>.*)", CategoryHandler),
             (r"/blog/upload", UploadHandler),
+            (r"/blog/archive", ArchiveHandler),
             (r"/user/login", LoginHandler),
             (r"/user/logoff", LogoffHandler),
             (r"/media/(.*)", StaticFileHandler, {"path": "media"}),

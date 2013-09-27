@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Category: {{ category["name"] }}{% end %}
+{% block title %}Archive{% end %}
 
 {% block content %}
 <div class="container">
   <div class="page-header">
-    <h1><span class="glyphicon glyphicon-tag"></span> {{ category["name"] }}</h1>
+    <h1>Blog Archive</h1>
   </div>
   {% set isFirst = True %}
-  {% for y in category["year"] %}
+  {% for year, articles in archives.items() %}
   {% if isFirst %}
     {% set isFirst = False %}
   {% else %}
@@ -16,13 +16,13 @@
   {% end %}
   <div class="row">
     <div class="col-md-2">
-      <h2>{{ y }}</h2>
+      <h2>{{ year }}</h2>
     </div>
-    {% set isFirst = True %}
+    {% set isFirst2 = True %}
     <div class="col-md-10">
-      {% for a in category["articles"][y] %}
-      {% if isFirst %}
-        {% set isFirst = False %}
+      {% for a in articles %}
+      {% if isFirst2 %}
+        {% set isFirst2 = False %}
       {% else %}
         <hr/>
       {% end %}

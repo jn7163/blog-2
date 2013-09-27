@@ -35,7 +35,7 @@
         <div class="carousel-caption">
           <h1>{{ carousel["title"] }}</h1>
           <p class="lead">
-            <i class="icon-calendar"></i> {{ carousel["date"].strftime("%b %d %Y") }}&nbsp;
+            <i class="icon-calendar"></i> {{ carousel["date"].strftime("%b %d %Y").upper() }}&nbsp;
             {% for tag in carousel["categories"] %}
             <span class="badge">{{ tag["name"] }}</span>&nbsp;
             {% end %}
@@ -53,23 +53,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      {% set isFirst = True %}
       {% for ar in articles %}
-      {% if isFirst %}
-        {% set isFirst = False %}
-      {% else %}
-      <hr/>
-      {% end %}
       <div class="article-container">
         <div class="page-header">
-          <h3><i class="icon-calendar"></i> {{ ar["date"].strftime("%b %d %Y") }}</h3>
+          <h3><i class="icon-calendar"></i> {{ ar["date"].strftime("%b %d %Y").upper() }}</h3>
           <h1><a href="/blog/article/{{ ar['_id'] }}">{{ ar["title"] }}</a></h1>
-          <div>
+          <p>
             {% for tag in ar["categories"] %}
             <a href="/blog/category/{{tag['_id']}}"><span class="badge">{{ tag["name"] }}</span></a>&nbsp;
             {% end %}
-            <p class="pull-right"><span class="badge">0</span> comments</p>
-          </div>
+          </p>
         </div>
         
         <div class="article-entry">
@@ -80,21 +73,16 @@
             {% if _user %}
             <a href="/blog/edit/{{ ar['_id'] }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
             {% end %}
-            <a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
-            <a href="/blog/article/{{ ar['_id'] }}"><span class="glyphicon glyphicon-comment"></span> Comment</a>
+            <!--<a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
+            <a href="/blog/article/{{ ar['_id'] }}"><span class="glyphicon glyphicon-comment"></span> Comment</a>-->
           </p>
         </div>
       </div>
+      <hr/>
       {% end %}
 
-      <ul class="pager">
-        {% if prev_page != -1 %}
-        <li class="previous"><a href="/blog?page={{ prev_page }}">&larr; Newer</a></li>
-        {% end %}
-        {% if next_page != -1 %}
-        <li class="next"><a href="/blog?page={{ next_page }}">Older &rarr;</a></li>
-        {% end %}
-      </ul>
+      <a class="btn btn-lg btn-default btn-block pull-right" href="/blog/archive">Archives</a>
+
     </div>
     <div class="col-md-4">
       {% if _user %}
