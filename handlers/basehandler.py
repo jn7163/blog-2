@@ -69,3 +69,6 @@ class BaseHandler(RequestHandler):
     def render(self, template_name, **kwargs):
         super(BaseHandler, self).render(template_name, 
                 _user=self.get_logined_user(), **kwargs)
+
+    def write_error(self, status_code, **kwargs):
+        self.render("404.html", nav_choose=None)

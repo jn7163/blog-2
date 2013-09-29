@@ -1,6 +1,7 @@
 from tornado.web import Application
 from tornado.ioloop import IOLoop
 from tornado.web import StaticFileHandler
+from tornado.web import ErrorHandler
 
 from handlers.index import IndexHandler
 from handlers.blog import BlogHandler
@@ -11,6 +12,7 @@ from handlers.category import CategoryHandler
 from handlers.edit import EditHandler
 from handlers.upload import UploadHandler
 from handlers.archive import ArchiveHandler
+from handlers.notfound import NotFoundHandler
 
 import os, pymongo
 
@@ -35,6 +37,7 @@ if __name__ == "__main__":
             (r"/user/login", LoginHandler),
             (r"/user/logoff", LogoffHandler),
             (r"/media/(.*)", StaticFileHandler, {"path": "media"}),
+            (r".*", NotFoundHandler),
 
         ], **settings)
     application.listen(9030)
