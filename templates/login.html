@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Login{% end %}
+{% block title %}Login{% endblock %}
 
 {% block head %}
 <link href="/static/css/signin.css" rel="stylesheet"/>
@@ -14,7 +14,7 @@
         data: $("#login_form").serialize(),
         success: function(data) {
           if (data.success) {
-            location.href = "{{ redirect_url }}";
+            location.href = "/blog/admin";
           }
           else {
             $(".alert").show();
@@ -28,39 +28,7 @@
     });
   });
 </script>
-{% end %}
-
-{% block nav %}
-<div class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">YTBlog</a>
-    </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li {% if nav_choose == "home" %}class="active"{% end %}><a href="/">Home</a></li>
-        <li {% if nav_choose == "blog" %}class="active"{% end %}><a href="/blog">Blog</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        {% if _user %}
-        <li {% if nav_choose == "login" %}class="active"{% end %}><a href="#"><i class="icon-user"></i> {{ _user["screen_name"] }}</a></li>
-        {% else %}
-        <li {% if nav_choose == "login" %}class="active"{% end %}><a href="#"><i class="icon-user"></i> Login</a></li>
-        {% end %}
-      </ul>
-    </div><!--/.nav-collapse -->
-
-  </div>
-</div>
-{% end %}
-
-
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -71,11 +39,11 @@
     <h2 class="form-signin-heading">Please login</h2>
     <input type="text" name="email" class="form-control" placeholder="Email address" autofocus>
     <input type="password" name="password" class="form-control" placeholder="Password">
-    <label class="checkbox">
-      <input type="checkbox" value="true" name="remember"> Remember me
-    </label>
+    <!--<label class="checkbox">
+      <input type="checkbox" value="remember" name="remember"> Remember me
+    </label>-->
     <button class="btn btn-lg btn-primary btn-block" type="button" id="login_submit">Login</button>
   </form>
 </div>
-{% end %}
+{% endblock %}
 

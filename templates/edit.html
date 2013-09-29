@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Edit{% end %}
+{% block title %}Edit{% endblock %}
 
 {% block head %}
 <link rel="stylesheet" href="/static/codemirror/lib/codemirror.css"/>
@@ -65,7 +65,7 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);  
   }
 </style>
-{% end %}
+{% endblock %}
 
 
 {% block content %}
@@ -74,7 +74,7 @@
     <h1>Article Editor
       <p class="pull-right">
         <button type="button" class="btn btn-primary" id="edit_submit" data-loading-text="Submiting...">Save</button>
-        <a type="button" class="btn btn-default" href="{{ refurl }}">Close</a>
+        <a type="button" class="btn btn-default" href="/blog/admin/articles">Close</a>
       </p>
     </h1>
   </div>
@@ -165,7 +165,7 @@
             location.href = "/blog/article/" + data.article_id;
           }
           else {
-            $("#alert_text").html(data.msg)
+            $("#alert_text").html(data.errmsg)
             $(".alert").show();
           }
           btn.button('reset');
@@ -181,6 +181,6 @@
     do_submit();
   });
 </script>
-{% end %}
+{% endblock %}
 
 

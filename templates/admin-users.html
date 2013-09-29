@@ -1,0 +1,34 @@
+{% extends "admin.html" %}
+
+
+{% block adminnav %}
+<li class="active"><a href="/blog/admin/users">Users</a></li>
+<li><a href="/blog/admin/articles">Articles</a></li>
+{% endblock %}
+
+{% block admincontent %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Email</th>
+      <th>Screen name</th>
+      <th>Is admin</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% set ind = 1 %}
+  {% for u in admin_data['users'] %}
+    <tr>
+      <td>{{ ind }}</td>
+      <td>{{ u['email'] }}</td>
+      <td>{{ u['screen_name'] }}</td>
+      <td>{{ u['is_admin'] }}</td>
+      <td><a class="btn btn-primary btn-xs">Modify</a></td>
+    </tr>
+    {% set ind = ind + 1 %}
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

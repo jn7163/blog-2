@@ -53,35 +53,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      {% for ar in articles %}
-      <div class="article-container">
-        <div class="page-header">
-          <h3><i class="icon-calendar"></i> {{ ar["date"].strftime("%b %d %Y").upper() }}</h3>
-          <h1><a href="/blog/article/{{ ar['_id'] }}">{{ ar["title"] }}</a></h1>
-          <p>
-            {% for tag in ar["categories"] %}
-            <a href="/blog/category/{{ tag['_id'] }}"><span class="badge">{{ tag["name"] }}</span></a>&nbsp;
-            {% endfor %}
-          </p>
-        </div>
-        
-        <div class="article-entry">
-          {{ ar["content"]|safe }}
-        </div>
-        <div class="article-footer">
-          <p style="margin-top: 20px; margin-bottom: 20px;">
-            {% if _user %}
-            <a href="/blog/edit/{{ ar['_id'] }}" class="pull-right"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
-            {% endif %}
-            <!--<a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
-            <a href="/blog/article/{{ ar['_id'] }}"><span class="glyphicon glyphicon-comment"></span> Comment</a>-->
-          </p>
-        </div>
+      <div id="articles">
       </div>
-      <hr/>
-      {% endfor %}
 
-      <a class="btn btn-lg btn-default btn-block pull-right" href="/blog/archive">Archives</a>
+      <div class="alert alert-info" style="display: none;" id="article_loading_alert"><p align="center"><span class="glyphicon glyphicon-refresh"></span> <b>Loading articles...</b></p></div>
+      <div class="alert alert-warning" style="display: none;" id="article_nomore_alert"><p align="center"><span class="glyphicon glyphicon-info-sign"></span> <b>No more articles.</b></p></div>
 
     </div>
     <div class="col-md-4">
@@ -94,4 +70,72 @@
     </div>
   </div>
 </div>
+
+<script>
+  var page = 1;
+  var count = 5;
+  var isLast = false;
+  var winH = $(window).height();
+  var processing = false;
+
+  var load_more_articles = function() {
+    $("#article_loading_alert").show();
+    $.ajax({
+      url: '/blog/ajax/get/article', 
+      dataType: 'json',
+      async: false,
+      data: {page: page, count: count}, 
+      success: function(response) {
+        if (response.success) {
+          if (response.articles.length == 0) {
+            isLast = true;
+            $("#article_nomore_alert").show();
+          }
+          else {
+            for (var i = 0; i < response.articles.length; ++ i) {
+              var article_div = '<div class="article-container">' + 
+                                  '<div class="page-header">' +
+                                    '<h3><i class="icon-calendar"></i> ' + response.articles[i].date + '</h3>' +
+                                      '<h1><a href="/blog/article/' + response.articles[i]._id + '">' + response.articles[i].title + '</a></h1>' +
+                                        '<p>';
+              for (var j = 0; j < response.articles[i].categories.length; ++ j) {
+                article_div +=  '<a href="/blog/category/' + response.articles[i].categories[j]._id + '"><span class="badge">' + 
+                  response.articles[i].categories[j].name + '</span></a>&nbsp;';
+              }
+              article_div += '</p>' +
+                            '</div>' +
+                            '<div class="article-entry">' + response.articles[i].content +
+                            '</div>' +
+                            '<div class="article-footer">' +
+                              '<p style="margin-top: 20px; margin-bottom: 20px;">' +
+                              '</p>' +
+                            '</div>' +
+                          '</div>' +
+                          '<hr/>';
+            } 
+            $("#articles").append(article_div);
+            page ++;
+          }
+          processing = false;
+        }
+      }
+    });
+    winH = $(window).height();
+    $("#article_loading_alert").hide();
+  };
+  
+  $(document).ready(function() {
+    $(window).scroll(function() {
+      if (isLast) return;
+      var pageH = $(document.body).height();
+      var scrollT = $(window).scrollTop();
+      var aa = (pageH - winH - scrollT) / winH;
+      if (aa < 0.02) {
+        load_more_articles();
+      }
+    });
+
+    load_more_articles();
+  });
+</script>
 {% endblock %}
