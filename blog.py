@@ -29,6 +29,11 @@ def notfound_handler(error):
     return render_template('404.html', nav_choose=None,
             nav_data=get_nav_data()), 404
 
+@app.errorhandler(500)
+def internalerror_handler(error):
+    return render_template('500.html', nav_choose=None,
+            nav_data=get_nav_data()), 500
+
 @app.before_request
 def before_request():
     g.db = pymongo.MongoClient(app.config['DATABASE']).ytblog
