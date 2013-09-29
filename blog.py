@@ -24,6 +24,11 @@ app.config['MEDIA_FOLDER'] = os.path.join(os.path.dirname(__file__), 'media')
 app.config['DATABASE'] = 'mongodb://localhost:27017'
 app.secret_key = '81c970b4e3ec500e0807073db064f15a45d3c3c4'
 
+@app.errorhandler(404)
+def notfound_handler(error):
+    return render_template('404.html', nav_choose=None,
+            nav_data=get_nav_data()), 404
+
 @app.before_request
 def before_request():
     g.db = pymongo.MongoClient(app.config['DATABASE']).ytblog
@@ -449,5 +454,4 @@ def media(filename):
             filename)
 
 if __name__ == "__main__":
-    app.debug = True
     app.run(port=9030)
