@@ -3,15 +3,15 @@
   <ul class="list-group">
     {% for a in sidebar["recently_articles"] %}
     <a class="list-group-item" href='/blog/article/{{ a["_id"] }}'><i class="icon-file-text"></i> {{ a["title"] }}<span class="badge pull-right"></span></a>
-    {% end %}
+    {% endfor %}
   </ul>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">Tags</div>
   <ul class="list-group">
     {% for tag in sidebar["tags"] %}
-    <a class="list-group-item" href='/blog/category/{{ tag["_id"] }}'><i class="icon-tag"></i> {{ tag["name"] }}<span class="badge pull-right">{{ len(tag["articles"]) }}</span></a>
-    {% end %}
+    <a class="list-group-item" href='/blog/category/{{ tag["_id"] }}'><i class="icon-tag"></i> {{ tag["name"] }}<span class="badge pull-right">{{ tag["articles"]|length }}</span></a>
+    {% endfor %}
   </ul>
 </div>
 <div class="panel panel-default">

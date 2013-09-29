@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Archive{% end %}
+{% block title %}Archive{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -13,7 +13,7 @@
     {% set isFirst = False %}
   {% else %}
   <hr/>
-  {% end %}
+  {% endif %}
   <div class="row">
     <div class="col-md-2">
       <h2>{{ year }}</h2>
@@ -25,7 +25,7 @@
         {% set isFirst2 = False %}
       {% else %}
         <hr/>
-      {% end %}
+      {% endif %}
       <div class="row">
         <div class="col-md-7">
           <a href='/blog/article/{{ a["_id"] }}'><h2>{{ a["title"] }}</h2></a>
@@ -42,15 +42,15 @@
               <h4 class="text-right">
                 {% for art_cat in a["categories"] %}
                 <a href="/blog/category/{{ art_cat['_id'] }}"/><span class="label label-default">{{ art_cat['name'] }}</span></a>&nbsp;
-                {% end %}
+                {% endfor %}
               </h4>
             </div>
           </div>
         </div>
       </div>
-      {% end %}
+      {% endfor %}
     </div>
   </div>
-  {% end %}
+  {% endfor %}
 </div>
-{% end %}
+{% endblock %}

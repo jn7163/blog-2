@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Blog of Y. T. Chung">
     <meta name="author" content="Y. T. Chung">
-    <title>{% block title %}Blog{% end %} | YTBlog -- Learn from the best</title>
+    <title>{% block title %}Blog{% endblock %} | YTBlog -- Learn from the best</title>
 
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
     <!--<link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"/>-->
@@ -24,7 +24,7 @@
     </style>
 
     {% block head %}
-    {% end %}
+    {% endblock %}
   </head>
   <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -40,15 +40,15 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li {% if nav_choose == "home" %}class="active"{% end %}><a href="/">Home</a></li>
-            <li {% if nav_choose == "blog" %}class="active"{% end %}><a href="/blog">Blog</a></li>
+            <li {% if nav_choose == "home" %}class="active"{% endif %}><a href="/">Home</a></li>
+            <li {% if nav_choose == "blog" %}class="active"{% endif %}><a href="/blog">Blog</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if _user %}
-            <li {% if nav_choose == "login" %}class="active"{% end %}><a href="/user/logoff"><i class="icon-user"></i> {{ _user["screen_name"] }}</a></li>
+            <li {% if nav_choose == "login" %}class="active"{% endif %}><a href="/user/logoff"><i class="icon-user"></i> {{ _user["screen_name"] }}</a></li>
             {% else %}
-            <li {% if nav_choose == "login" %}class="active"{% end %}><a href="/user/login"><i class="icon-user"></i> Login</a></li>
-            {% end %}
+            <li {% if nav_choose == "login" %}class="active"{% endif %}><a href="/user/login"><i class="icon-user"></i> Login</a></li>
+            {% endif %}
           </ul>
         </div><!--/.nav-collapse -->
 
@@ -56,7 +56,7 @@
     </div>
 
     {% block content %}
-    {% end %}
+    {% endblock %}
 
     <footer>
       <div class="container">

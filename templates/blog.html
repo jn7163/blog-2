@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
-{% block title %}Blog{% end %}
+{% block title %}Blog{% endblock %}
 
 {% block head %}
 <link href="/static/css/blog-carousel.css" rel="stylesheet"/>
 <link href="/static/css/article.css" rel="stylesheet"/>
 <script src="/static/js/newpost.js"></script>
-{% end %}
+{% endblock %}
 
 {% block content %}
 <div id="indexCarousel" class="carousel slide">
   <div class="carousel-indicators">
     <li data-target="#indexCarousel" data-slide-to="0" class="active"></li>
-    {% for index in range(1, len(carousels) + 1) %}
+    {% for index in range(1, carousels|length  + 1) %}
     <li data-target="#indexCarousel" data-slide-to="{{ index }}"></li>
-    {% end %}
+    {% endfor %}
   </div>
   <div class="carousel-inner">
 
@@ -38,13 +38,13 @@
             <i class="icon-calendar"></i> {{ carousel["date"].strftime("%b %d %Y").upper() }}&nbsp;
             {% for tag in carousel["categories"] %}
             <span class="badge">{{ tag["name"] }}</span>&nbsp;
-            {% end %}
+            {% endfor %}
           </p>
           <a class="btn btn-lg btn-primary" href="/blog/article/{{ carousel['_id'] }}">Jump to</a>
         </div>
       </div>
     </div>
-    {% end %}
+    {% endfor %}
   </div>
   <a class="left carousel-control" href="#indexCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
   <a class="right carousel-control" href="#indexCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -61,25 +61,25 @@
           <p>
             {% for tag in ar["categories"] %}
             <a href="/blog/category/{{ tag['_id'] }}"><span class="badge">{{ tag["name"] }}</span></a>&nbsp;
-            {% end %}
+            {% endfor %}
           </p>
         </div>
         
         <div class="article-entry">
-          {% raw ar["content"] %}
+          {{ ar["content"]|safe }}
         </div>
         <div class="article-footer">
           <p style="margin-top: 20px; margin-bottom: 20px;">
             {% if _user %}
             <a href="/blog/edit/{{ ar['_id'] }}" class="pull-right"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;&nbsp;
-            {% end %}
+            {% endif %}
             <!--<a href="#"><span class="glyphicon glyphicon-share"></span> Share</a>&nbsp;&nbsp;
             <a href="/blog/article/{{ ar['_id'] }}"><span class="glyphicon glyphicon-comment"></span> Comment</a>-->
           </p>
         </div>
       </div>
       <hr/>
-      {% end %}
+      {% endfor %}
 
       <a class="btn btn-lg btn-default btn-block pull-right" href="/blog/archive">Archives</a>
 
@@ -89,9 +89,9 @@
       <div class="panel panel-default">
         <a type="button" class="btn btn-primary btn-lg btn-block" id="newpost_button" href="/blog/edit">New post</a>
       </div>
-      {% end %}
+      {% endif %}
       {% include "sidebar.html" %}
     </div>
   </div>
 </div>
-{% end %}
+{% endblock %}
