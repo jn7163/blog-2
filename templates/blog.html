@@ -79,6 +79,8 @@
   var processing = false;
 
   var load_more_articles = function() {
+    while (processing);
+    processing = true;
     $("#article_loading_alert").show();
     $.ajax({
       url: '/blog/ajax/get/article', 
@@ -112,8 +114,8 @@
                             '</div>' +
                           '</div>' +
                           '<hr/>';
+              $("#articles").append(article_div);
             } 
-            $("#articles").append(article_div);
             page ++;
           }
           processing = false;
@@ -126,7 +128,7 @@
   
   $(document).ready(function() {
     $(window).scroll(function() {
-      if (isLast) return;
+      if (isLast || processing) return;
       var pageH = $(document.body).height();
       var scrollT = $(window).scrollTop();
       var aa = (pageH - winH - scrollT) / winH;
