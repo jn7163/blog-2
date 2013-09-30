@@ -16,6 +16,9 @@ import hashlib
 
 from docutils.core import publish_parts
 from rst_htmlwriter import Writer
+from rst_directive import Pygments
+from docutils.parsers.rst import directives
+directives.register_directive('code', Pygments)
 
 from bson.objectid import ObjectId
 
