@@ -144,7 +144,7 @@ def ajax_get_article():
                     {'title': ar['title'], 'content': publish_parts(ar['content'], 
                                                     writer=Writer(),
                                                     settings_overrides={'initial_header_level': 2})['html_body'],
-                        'date': ar['date'].strftime("%b %d").upper(), '_id': str(ar['_id']),
+                        'date': ar['date'].strftime("%b %d %Y").upper(), '_id': str(ar['_id']),
                         'categories': [
                             {'name': cat['name'], '_id': str(cat['_id'])} 
                                 for cat in g.db.category.find({"articles": ar['_id']})
