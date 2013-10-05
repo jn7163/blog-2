@@ -21,15 +21,15 @@
       </div>
 
       <div class="row article-meta">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <h4><i class="icon-calendar"></i> {{ article["date"].strftime("%b %d %Y").upper() }}</h4>
         </div>
-        <div class="col-md-8">
-          <h4 class="text-right">
+        <div class="col-md-9">
+          <h5 class="text-right">
             {% for art_tag in article["categories"] %}
             &nbsp;<a href="/blog/category/{{ art_tag['_id'] }}"><span class="label label-default">{{ art_tag["name"] }}</span></a>
             {% endfor %}
-          </h4>
+          </h5>
         </div>
       </div>
 
