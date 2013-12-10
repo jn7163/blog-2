@@ -15,7 +15,7 @@ The previous version of my blog was build from scratch, by using Bootstrap_, Fla
 Dependences
 ===========
 
-* Python 2.7.x
+* Python 3.3.x
 
 * Pelican_
 
