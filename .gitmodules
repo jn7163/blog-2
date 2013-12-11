@@ -3,4 +3,4 @@
 	url = git@github.com:fjavieralba/flasky.git
 [submodule "theme/pelican-bootstrap3"]
 	path = theme/pelican-bootstrap3
-	url = git@github.com:DandyDev/pelican-bootstrap3.git
+	url = git@github.com:zonyitoo/pelican-bootstrap3.git
