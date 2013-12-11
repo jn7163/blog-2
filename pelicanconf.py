@@ -4,11 +4,15 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Y. T. Chung'
 SITENAME = 'YTBlog'
-SITEURL = ''
+SITEURL = '/'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Asia/HongKong'
 
 DEFAULT_LANG = 'en'
+
+CONTACT_EMAIL = "zonyitoo@gmail.com"
+
+USE_CUSTOM_MENUITEMS = True
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -22,10 +26,18 @@ LINKS =  (('Pelican', 'http://getpelican.com/'),
           ('You can modify those links in your config file', '#'),)
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
+SOCIAL = (('twitter', 'https://twitter.com/zonyitoo'),
+          ('github', 'https://github.com/zonyitoo'),
+          ('facebook', 'https://www.facebook.com/yutang.chung.7'))
 
 DEFAULT_PAGINATION = 10
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
+
+# Themes
+THEME = "theme/pelican-bootstrap3"
+TYPOGRIFY = True
+
+GITHUB_USER = "zonyitoo"
+GITHUB_SHOW_USER_LINK = True

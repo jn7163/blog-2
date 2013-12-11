@@ -1,0 +1,6 @@
+[submodule "theme/flasky"]
+	path = theme/flasky
+	url = git@github.com:fjavieralba/flasky.git
+[submodule "theme/pelican-bootstrap3"]
+	path = theme/pelican-bootstrap3
+	url = git@github.com:DandyDev/pelican-bootstrap3.git

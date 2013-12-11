@@ -20,3 +20,16 @@ Dependences
 * Pelican_
 
 .. _Pelican: http://docs.getpelican.com/
+
+Running
+=======
+
+.. code:: bash
+
+    $ virtualenv .venv
+    $ . .venv/bin/activate
+    $ pip install -r requirements.pip
+    $ make html
+    $ make serve
+
+Then the blog is generated and can be previewed in http://localhost:8000/.
