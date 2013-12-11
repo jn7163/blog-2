@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "/Users/zonyitoo/Dropbox/blog"
+		}
+	],
+    "settings": {
+        "flake8lint": {
+            "python_interpreter": "auto"
+        }
+    }
+}
