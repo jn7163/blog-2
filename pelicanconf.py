@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Y. T. Chung'
 SITENAME = 'YTBlog'
-SITEURL = '/'
+SITEURL = ''
 
 TIMEZONE = 'Asia/HongKong'
 
@@ -20,10 +20,10 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 
 # Blogroll
-LINKS =  (('Pelican', 'http://getpelican.com/'),
-          ('Python.org', 'http://python.org/'),
-          ('Jinja2', 'http://jinja.pocoo.org/'),
-          ('You can modify those links in your config file', '#'),)
+LINKS = (('Pelican', 'http://getpelican.com/'),
+         ('Python.org', 'http://python.org/'),
+         ('Jinja2', 'http://jinja.pocoo.org/'),
+         ('You can modify those links in your config file', '#'),)
 
 # Social widget
 SOCIAL = (('twitter', 'https://twitter.com/zonyitoo'),
@@ -37,7 +37,7 @@ DEFAULT_PAGINATION = 10
 
 # Themes
 THEME = "theme/pelican-bootstrap3"
-TYPOGRIFY = True
+#TYPOGRIFY = True
 
 GITHUB_USER = "zonyitoo"
 GITHUB_SHOW_USER_LINK = True
