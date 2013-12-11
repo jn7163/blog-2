@@ -6,6 +6,8 @@ AUTHOR = 'Y. T. Chung'
 SITENAME = 'YTBlog'
 SITEURL = ''
 
+RELATIVE_URL = False
+
 TIMEZONE = 'Asia/HongKong'
 
 DEFAULT_LANG = 'en'
@@ -13,6 +15,7 @@ DEFAULT_LANG = 'en'
 CONTACT_EMAIL = "zonyitoo@gmail.com"
 
 USE_CUSTOM_MENUITEMS = True
+DEFAULT_CATEGORY = 'Misc'
 
 # Feed generation is usually not desired when developing
 FEED_ALL_ATOM = None
@@ -41,3 +44,18 @@ THEME = "theme/pelican-bootstrap3"
 
 GITHUB_USER = "zonyitoo"
 GITHUB_SHOW_USER_LINK = True
+
+DISQUS_SITENAME = "zonyitooblog"
+
+MENUITEMS = (('Intro', '/intro.html'),)
+TEMPLATE_PAGES = {
+    "htmls/intro.html": "intro.html"
+}
+
+STATIC_PATHS = [
+    'static',
+]
+
+EXTRA_PATH_METADATA = {
+    'static': {'path': 'static'},
+}

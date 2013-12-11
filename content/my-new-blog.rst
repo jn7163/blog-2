@@ -2,8 +2,8 @@ Hola! Welcome
 -------------
 
 :date: 2013-12-11 09:49
-:tags:
-:category: Blog
+:tags: tech
+:category: Misc
 :slug: my-new-blog
 :author: `Y. T. Chung`
 
