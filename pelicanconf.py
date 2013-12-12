@@ -61,6 +61,7 @@ STATIC_PATHS = [
 
 EXTRA_PATH_METADATA = {
     'static': {'path': 'static'},
+    'favicon.ico': {'path': 'static/img/favicon.ico'},
 }
 
 import sys
