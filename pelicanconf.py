@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'Y. T. Chung'
 SITENAME = 'YTBlog'
-SITEURL = ''
+SITEURL = 'http://zonyitoo.me'
 
 RELATIVE_URL = False
 
