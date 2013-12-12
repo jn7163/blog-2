@@ -12,8 +12,8 @@ This is my new blog, which is powered by Pelican_ and Python3_.
 .. _Pelican: http://docs.getpelican.com/
 .. _Python3: http://www.python.com/
 
-Why I rewrite my blog?
-======================
+Why do I rewrite my blog?
+=========================
 
 Previous version of my blog was built from scratch by using Bootstrap_, Flask_ and MongoDB_. It took me about 2 weeks to build the front-end pages. But it was not as perfect as I expected. I want to focus on writing blogs but fix bugs.
 
@@ -27,8 +27,8 @@ My blog used to be a **dynamic blog**, which means it has a server-side program 
 
 This is a **static blog**. I can write my blogs on my computer and generate HTML pages by using one command ``make html``. Then I can upload the generated HTML files to my server. My blog is served without any server-side logic and database.
 
-How I build my blog?
-====================
+How did I build my blog?
+========================
 
 Well, it is pretty easy. First I installed a Python_ environment. Python 2 or 3 are ok. I chose Python 3. Then make a new folder:
 
